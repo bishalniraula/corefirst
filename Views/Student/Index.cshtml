@@ -1,0 +1,44 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model List<Student>
+@{
+    ViewData["Title"] = "student home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">List of student</h1>
+    
+    <div class="row">
+        <a asp-controller="Student" asp-action="Create"  class="btn btn-primary"> Create</a>
+    @{
+        foreach(Student student in Model)
+        {
+                <div class="col-sm-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Info</h5>
+                            <p class="card-text">@student.Id</p>
+                            <p class="card-text">@student.Name</p>
+                            <p class="card-text">@student.Gender</p>
+                            <a asp-controller="Student" asp-action="Display" asp-route-id ="@student.Id" class="btn btn-primary"> click here For Display</a>
+                            
+                            <a asp-controller="Student" asp-action="Update" asp-route-id="@student.Id" class="btn btn-primary"> Update</a>
+                         
+                            <form onsubmit="return confirm('Are you sure you wantto del');" asp-controller="Student" asp-action="Delete" asp-route-id="@student.Id" method="post">
+                            <input type="submit" value="Delete"class="btn btn-danger"/>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            
+  
+  
+        }
+    }
+    
+    
+    </div>
+</div>
